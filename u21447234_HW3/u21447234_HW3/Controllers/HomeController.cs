@@ -32,6 +32,8 @@ namespace u21447234_HW3.Controllers
 
         public ActionResult AboutMe()
         {
+            ViewBag.Message = "I'm Mitchell this is my About page, let's get started.";
+
             return View();
         }
     }
