@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    ViewBag.Message = "Please select an upload option and a file to upload.";
+}
+<h2><b>@ViewBag.Title</b></h2>
+<h4>@ViewBag.Message</h4>
+
+<style>
+    body {
+        background-image: linear-gradient(to right, white, lightblue, lightskyblue, dodgerblue);
+        background-attachment: fixed;
+    }
+</style>
+
+<div class="well-lg" style="background-color: #262626; color: white;">
+    <div class="row">
+
+        <div class="col-xs-12 col-lg-7" style="margin-top: -20px;">
+            <h2>Description</h2>
+            <p>fdsfhi ofhid fnaskl ss sssssss sssssss ss ssss sjfbkjbfj</p><br />
+        </div>
+
+        <div class="col-xs-12 col-lg-5">
+            <form>
+                <div class="row">
+                    <div class="col-xs-12" style="margin-top: -20px;">
+                        <div class="row">
+                            <h2 style="margin-left: 15px;">Option Selection</h2>
+                            @using (Html.BeginForm("Home", "Index", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <div class="col-lg-4">
+                                    <input type="radio" id="Doc" name="rbSelection" value="Doc">
+                                    <label for="Doc">Document</label><br />
+
+                                    <input type="radio" id="Img" name="rbSelection" value="Img">
+                                    <label for="Img">Image</label><br />
+
+                                    <input type="radio" id="Vid" name="rbSelection" value="Vid">
+                                    <label for="Vid">Video</label><br />
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <input type="file" name="files" /><br />
+                                    <input type="submit" class="btn btn-primary" value="Submit" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

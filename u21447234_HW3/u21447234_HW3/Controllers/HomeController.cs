@@ -3,37 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 namespace u21447234_HW3.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Home()
+        [HttpGet]
+        public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Files()
+        [HttpPost]
+        public ActionResult Index(HttpPostedFileBase files, string rbSelection)
         {
-            return View();
+            if (files != null && files.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(files.FileName);
+                var path = "";
+
+                if (rbSelection == "Doc")
+                {
+                    path = Path.Combine(Server.MapPath("~/App_Data/document"), fileName);
+                }
+                else if(rbSelection == "Img")
+                {
+                    path = Path.Combine(Server.MapPath("~/App_Data/image"), fileName);
+                }
+                else
+                {
+                    path = Path.Combine(Server.MapPath("~/App_Data/video"), fileName);
+                }
+                files.SaveAs(path);
+            }
+            return RedirectToAction("Index");
         }
-
-        public ActionResult Images()
-        {
-            return View();
-        }
-
-        public ActionResult Videos()
-        {
-            return View();
-        }
-
-
 
         public ActionResult AboutMe()
         {
-            ViewBag.Message = "I'm Mitchell this is my About page, let's get started.";
-
             return View();
         }
     }

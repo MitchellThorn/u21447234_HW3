@@ -1,0 +1,56 @@
+﻿@using u21447234_HW3.Models
+@model List<FileModel>
+
+@{
+    ViewBag.Title = "Files";
+    ViewBag.Message = "All your uploaded files will appear here.";
+}
+
+<h2><b>@ViewBag.Title</b></h2>
+<h4>@ViewBag.Message</h4>
+
+<style>
+    .middle {
+        text-align: center;
+    }
+
+    body {
+        background-image: radial-gradient(circle, blue, aqua, lightskyblue, lightblue);
+        background-attachment: fixed;
+    }
+
+    .table {
+        margin-top: -20px;
+    }
+</style>
+
+<div class="well-lg" style="background-color: #262626;">
+    <table class="table" style="background-color: #262626; color: white;">
+        <thead style="position: sticky; top: 0;">
+            <tr>
+                <th style="width: 350px;">File Name</th>
+                <th class="middle">DOWNLOAD </th>
+                <th class="middle">DELETE</th>
+            </tr>
+        </thead>
+        @foreach (FileModel file in Model)
+        {
+            <tr>
+                <td>@file.FileName</td>
+                <td>
+                    <button style="vertical-align: middle;">
+                        @Html.ActionLink("Download", "DownloadFile",
+                         new { fileName = file.FileName })
+                    </button>
+                </td>
+                <td>
+                    <button style="vertical-align: middle;">
+                        @Html.ActionLink("DELETE", "DeleteFile",
+                       new { fileName = file.FileName },
+                       new { onclick = "return confirm('Are you sure you wish to delete this?');" })
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
