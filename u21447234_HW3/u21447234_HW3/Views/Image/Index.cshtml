@@ -1,7 +1,58 @@
-﻿
+﻿@using u21447234_HW3.Models
+@model List<FileModel>
+    
 @{
     ViewBag.Title = "Images";
+    ViewBag.Message = "All your uploaded Images will appear here.";
 }
-
 <h2><b>@ViewBag.Title</b></h2>
+<h4>@ViewBag.Message</h4>
+
+<style>
+    body {
+        background-image: radial-gradient(circle, blue, aqua, lightskyblue, lightblue);
+        background-attachment: fixed;
+    }
+
+    .card {
+        height: 200px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        position: relative;
+        border: dashed;
+        border-color: dimgrey;
+    }
+
+    .card-body {
+        position: absolute;
+        bottom: 2px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="well-lg" style="background-color: #262626; color: white;">
+    <div class="row">
+        @foreach (FileModel images in Model)
+        {
+            <div class="col-lg-4">
+                <div class="card">
+                    <img src="~/App_Data/image/@images.FileName" alt="Card Image" />
+                    <div class="card-body">
+                        <h4>@images.FileName</h4>
+                        <button class="btn btn-success">
+                            @Html.ActionLink("Download", "DownloadImage",
+                            new { fileName = images.FileName })
+                        </button>
+                        <button class="btn btn-danger">
+                            @Html.ActionLink("DELETE", "DeleteImage",
+                            new { fileName = images.FileName },
+                            new { onclick = "return confirm('Are you sure you wish to delete this?');" })
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 

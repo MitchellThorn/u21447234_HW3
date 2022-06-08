@@ -31,7 +31,7 @@ namespace u21447234_HW3.Controllers
                 {
                     path = Path.Combine(Server.MapPath("~/App_Data/image"), fileName);
                 }
-                else
+                else if(rbSelection == "Vid")
                 {
                     path = Path.Combine(Server.MapPath("~/App_Data/video"), fileName);
                 }

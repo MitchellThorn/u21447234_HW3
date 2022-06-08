@@ -13,7 +13,7 @@ namespace u21447234_HW3.Controllers
     {
         public ActionResult Index()
         {
-            string[] filePaths = Directory.GetFiles(Server.MapPath("~/App_Data/document"));
+            string[] filePaths = Directory.GetFiles(Server.MapPath("~/App_Data/document/"));
 
             List<FileModel> files = new List<FileModel>();
 
@@ -26,7 +26,7 @@ namespace u21447234_HW3.Controllers
 
         public FileResult DownloadFile(string fileName)
         {
-            string path = Server.MapPath("~/App_Data/document") + fileName;
+            string path = Server.MapPath("~/App_Data/document/") + fileName;
             byte[] bytes = System.IO.File.ReadAllBytes(path);
 
             return File(bytes, "application/octet-stream", fileName);
@@ -34,8 +34,7 @@ namespace u21447234_HW3.Controllers
 
         public ActionResult DeleteFile(string fileName)
         {
-            string path = Server.MapPath("~/App_Data/document") + fileName;
-            byte[] bytes = System.IO.File.ReadAllBytes(path);
+            string path = Server.MapPath("~/App_Data/document/") + fileName;
 
             System.IO.File.Delete(path);
 
